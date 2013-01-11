@@ -1,4 +1,4 @@
-function GetFirstLineWithChars()
+function! GetFirstLineWithChars()
   let line_num = 0
   let charline = matchstr(getline(v:foldstart), '.*[a-zA-Z]\+.*')
   while strlen(charline) == 0
@@ -9,17 +9,17 @@ function GetFirstLineWithChars()
 endfunction
 
 " Simple fold settings for G code style.
-function GCodeFoldingSimple()
+function! GCodeFoldingSimple()
   setlocal foldtext=getline(v:foldstart)
   setlocal fdm=marker
   setlocal foldmarker={,}
 endfunction
 
-function YFolding()
+function! YFolding()
   set foldtext=repeat('\ \ ',v:foldlevel-1).'[+]\ '.substitute(GetFirstLineWithChars(),'\\\/\\\/\\\|\\*\\\|\\*\\\|{{{\\d\\=','','g')
 endfunction
 
-function GCodeFolding()
+function! GCodeFolding()
   "let g:fdbg = 'FDBG '
   setlocal foldexpr=FoldByBracket(v:lnum)
   setlocal fdm=expr
@@ -61,7 +61,7 @@ function! FoldByBracket(lnum)
   return '='
 endfunction
 
-function FBBText()
+function! FBBText()
   let l:fdlines = v:foldend - v:foldstart
   let l:line = getline(v:foldend)
   let l:fdtext = l:line . repeat(' ', 60 - len(l:line)) . "(" . l:fdlines . " Lines Folded)"
