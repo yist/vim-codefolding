@@ -67,3 +67,7 @@ function! FBBText()
   let l:fdtext = l:line . repeat(' ', 60 - len(l:line)) . "(" . l:fdlines . " Lines Folded)"
   return l:fdtext
 endfunction
+
+command! -nargs=0 F call GCodeFolding()                                                                                                                        
+command! -nargs=0 Gsfold call GCodeFoldingSimple()                                                                                                             
+command! -nargs=0 Yfold call YFolding()
